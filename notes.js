@@ -54,8 +54,9 @@ const removeNote = function(title) {
         console.log('note to remove: ', title)
         console.log(newNotes);
         saveNotes(newNotes)
+        console.log(chalk.green.inverse("Note removed successfully."))
     } catch(e) {
-        console.log(chalk.red("ERROR: "), e)
+        console.log(chalk.red.inverse("ERROR: "), e)
 
     }
 }
