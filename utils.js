@@ -1,5 +1,5 @@
-const name = "Jeremy Clarkson";
+const name = "Jeremy Clarkson"
 
 
 
-module.exports = name;
+module.exports = name

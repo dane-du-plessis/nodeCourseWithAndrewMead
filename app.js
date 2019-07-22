@@ -1,11 +1,64 @@
-const getNotes = require('./notes.js')
+const chalk = require('chalk')
+const yargs = require('yargs')
+const log = console.log
+const noteCRUD = require('./notes')
 
-// const name = require('./utils.js')
-// const fs = require('fs');
-// fs.writeFileSync('mynotes.txt', 'This is was created by a tenatacled monster');
-// fs.appendFileSync('mynotes.txt', '\n And yet, this was written by a dragon in an iron pen');
-// fs.appendFileSync('mynotes.txt', '\n' + name);
-// console.log(name);
+yargs.version('1.0.0')
+
+// log(process.argv)
+
+// crud for notes
+
+// Add note command
+yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    builder: {
+        title:{
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            descrive: 'Note body text',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+        log('title: ' +  argv.title)
+        log('body: ' +  argv.body)
+        noteCRUD.addNote(argv.title, argv.body)
+    }    
+})
+
+// Remove command
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    handler: function() {
+        log("removing a note")
+    }
+})
+
+// List command
+yargs.command({
+    command: 'list',
+    describe: 'list notes',
+    handler: function() {
+        log("listing notes")
+    }
+})
+
+// Read command
+yargs.command({
+    command: 'read',
+    describe: 'Read notes',
+    handler: function() {
+        log("Reading notes")
+    }
+})
 
 
-console.log(getNotes())
+yargs.parse()
+// log(yargs.argv)
