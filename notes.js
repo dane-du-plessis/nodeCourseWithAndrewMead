@@ -18,9 +18,9 @@ const addNote = function(title, note ) {
             note: note
         })
         saveNotes(notes)
-        console.log('Note added successfully!')
+        console.log(chalk.green.inverse("SUCCESS: "), "Note added")
     } else {
-        console.log('Note already created!')
+        console.log(chalk.red.inverse("ERROR: "), 'Note already created!')
     }
 }
 
@@ -30,7 +30,7 @@ const loadNotes = function() {
         const dataJSON = dataBuffer.toString()
         return JSON.parse(dataJSON)
     } catch (e) {
-        console.error("You've got a problem buddy, no file found")
+        console.error(chalk.red.inverse("ERROR: "), "You've got a problem buddy, no file found")
         return []
     }
 
@@ -39,8 +39,9 @@ const loadNotes = function() {
 const saveNotes = function(notes) {
     try{
         fs.writeFileSync('notes.json', JSON.stringify(notes))
+        console.log(chalk.green.inverse("SUCCESS: "), "Note saved")
     }catch(e){
-        console.log("You're outta luck squirrel. File didn't save")
+        console.log(chalk.red.inverse("ERROR: "), "You're outta luck squirrel. File didn't save")
     }
 }
 
